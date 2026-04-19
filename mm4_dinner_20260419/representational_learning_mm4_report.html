@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MM4 Representation Learning Report</title>
+  <style>
+:root {
+  --bg: #f6f1e8;
+  --paper: #fffdf8;
+  --ink: #1d1a17;
+  --muted: #6d655d;
+  --rule: #d9cfc0;
+  --accent: #9f3f2f;
+  --accent-soft: #f4e4d8;
+  --code-bg: #f3eee6;
+  --link: #0b5cad;
+  --shadow: 0 18px 48px rgba(60, 41, 19, 0.10);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(159,63,47,0.10), transparent 28%),
+    linear-gradient(180deg, #efe6d8 0%, var(--bg) 30%, #f9f6f0 100%);
+  color: var(--ink);
+  font: 18px/1.65 Georgia, 'Times New Roman', serif;
+}
+header.site {
+  padding: 28px 20px 16px;
+}
+header.site .shell, main.shell {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.brand {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero {
+  margin-top: 10px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  font-weight: 700;
+}
+.hero p {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--muted);
+}
+nav.top {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+nav.top a {
+  color: var(--link);
+  text-decoration: none;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid rgba(89, 69, 46, 0.10);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 28px 26px;
+}
+main.shell {
+  padding: 8px 20px 40px;
+}
+.notice {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: #5a2c21;
+  font-size: 0.95rem;
+}
+.notice code { background: rgba(255,255,255,0.45); }
+.article { overflow-wrap: anywhere; }
+.article h1, .article h2, .article h3, .article h4 { line-height: 1.16; margin-top: 1.6em; margin-bottom: 0.55em; }
+.article h1 { font-size: 2rem; }
+.article h2 { font-size: 1.45rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+.article h3 { font-size: 1.16rem; }
+.article p, .article ul, .article ol, .article table, .article pre, .article blockquote { margin-top: 0.9em; margin-bottom: 0.9em; }
+.article ul, .article ol { padding-left: 1.4em; }
+.article li + li { margin-top: 0.24em; }
+.article a { color: var(--link); }
+.article code {
+  background: var(--code-bg);
+  padding: 0.12em 0.32em;
+  border-radius: 5px;
+  font-size: 0.92em;
+}
+.article pre {
+  background: #1e1d1b;
+  color: #f9f7f2;
+  padding: 14px 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 0.92rem;
+}
+.article pre code { background: transparent; padding: 0; color: inherit; }
+.article blockquote {
+  border-left: 4px solid var(--accent);
+  margin-left: 0;
+  padding-left: 16px;
+  color: #5f554c;
+}
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  font-size: 0.95rem;
+}
+.article th, .article td {
+  border: 1px solid var(--rule);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.article th { background: #f5efe4; }
+.footer {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+.tile {
+  background: var(--paper);
+  border-radius: 18px;
+  border: 1px solid rgba(89, 69, 46, 0.10);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.tile h2 { margin: 0 0 8px; font-size: 1.3rem; }
+.tile p { margin: 0 0 16px; color: var(--muted); }
+.tile a { color: var(--link); text-decoration: none; font-weight: 600; }
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .card { padding: 22px 18px; border-radius: 16px; }
+  header.site { padding: 22px 14px 10px; }
+  main.shell { padding: 8px 14px 30px; }
+}
+</style>
+  
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'], ['\(','\)']], displayMath: [['$$','$$'], ['\[','\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+</head>
+<body>
+  <header class="site">
+    <div class="shell">
+      <div class="brand">Robert MM4 Reading Pack</div>
+      <div class="hero">
+        <h1>MM4 Representation Learning Report</h1>
+        <p>World-model and representation-learning note for Robert_MM_4.</p>
+      </div>
+      <nav class="top">
+        <a href="index.html">Index</a>
+        <a href="for_nick_summary.html">MM4 Summary</a>
+        <a href="representational_learning_mm4_report.html">Representation Report</a>
+      </nav>
+    </div>
+  </header>
+  <main class="shell">
+    <div class="notice">Hosted phone view. Repo-local links may not resolve here; the two bundled documents above do.</div>
+    <article class="card article">
+      <h1>World-Model Representation Learning for <code>Robert_MM_4</code></h1>
+<h2>Scope and Thesis</h2>
+<p>The right object of study here is not market microstructure in isolation. It is representation learning for partially observed sequential control, with market making as the application domain. The central question is whether <code>Robert_MM_4</code> should continue to rely primarily on hand-constructed features, or instead learn a high-dimensional latent state from a relatively small number of observed columns and event streams. My conclusion is that the latter is the scientifically stronger direction.</p>
+<p>More concretely, the relevant problem is to learn a map</p>
+<p>[
+x_t \in \mathbb{R}^{d} \longmapsto z_t \in \mathbb{R}^{m}, \quad m \gg d,
+]</p>
+<p>where (x_t) is a compact observed state and (z_t) is a learned latent representation that is useful for predicting future latent states, future observations, and control-relevant quantities under actions. This is a world-model or predictive-state viewpoint. It is also naturally semi-supervised: unlabeled sequential data are abundant, whereas labels such as realized fill quality, adverse selection, and value are sparse and delayed.</p>
+<p>In that sense, the correct comparison is not &quot;engineered features versus a bigger supervised model.&quot; It is &quot;engineered static summaries versus self-supervised predictive representations with supervised readouts.&quot;</p>
+<h2>Part I. General Representation Learning: The Relevant Literature</h2>
+<h3>1. The core scientific shift: from descriptive features to predictive state</h3>
+<p>The older feature-engineering paradigm assumes that a human should specify the small set of statistics that matter. The modern representation-learning paradigm assumes instead that the system should discover latent variables that preserve what is useful for prediction and control while discarding nuisance variation. In sequential problems, this usually means that a good representation must satisfy three conditions:</p>
+<ol>
+<li>it must be predictive of the future;</li>
+<li>it must be invariant to nuisance details that do not affect future outcomes;</li>
+<li>it must remain usable under action-conditioning, because control changes the future.</li>
+</ol>
+<p>This is why the strongest recent work has moved away from hand-crafted features and, increasingly, away from raw-space reconstruction. The best results come from learning in latent space.</p>
+<h3>2. Predictive latent objectives, not observation-space reconstruction, are the main line of progress</h3>
+<p>Contrastive Predictive Coding (CPC) is one of the clearest early formulations of this view. Van den Oord, Li, and Vinyals propose learning useful representations by predicting the future in latent space with an autoregressive model, using a contrastive objective rather than supervised labels [1]. The key scientific point is that the representation is trained to preserve information that is maximally useful for future prediction, not to preserve everything in the observation.</p>
+<p>BYOL established that strong representations can be learned without negative pairs by training one network to predict another network's latent representation under a different view of the same input [2]. This matters because it showed that useful representations do not require a contrastive dictionary of negatives; consistency and asymmetry can suffice.</p>
+<p>MAE pushed masked modeling into a scalable regime by reconstructing masked content from partial context [3]. However, it also clarified an important limitation: when the target is raw pixels, the decoder can dominate the task and the learned latent may still expend capacity on low-level detail. This is precisely the concern that motivates the move toward representation-space prediction.</p>
+<p>Data2vec is especially relevant because it generalizes the masked latent-prediction idea across speech, vision, and language [4]. Its core move is to predict latent representations of the full input from a masked view in a self-distillation setup. This is conceptually close to what we would want in a general sequential system: the same predictive objective should work across modalities and should not depend on a bespoke task-specific label design.</p>
+<h3>3. LeCun's world-model program is the right conceptual frame, but the evidence comes from concrete JEPA systems</h3>
+<p>Yann LeCun's &quot;A Path Towards Autonomous Machine Intelligence&quot; is a position paper, not an empirical benchmark paper, so it should not be treated as evidence by itself [5]. Its value is that it states the architectural claim cleanly: intelligent systems need world models learned largely in a self-supervised manner; these models should support prediction, reasoning, and planning; and they should predict in a latent representation space rather than in raw observation space whenever possible.</p>
+<p>That program is made concrete by I-JEPA. Assran et al. introduce a non-generative self-supervised architecture that predicts the latent representations of target blocks from a context block, explicitly aiming for semantic rather than low-level representations [6]. This is the closest direct empirical realization of the LeCun position that is mature enough to take seriously. The important lesson is not &quot;predict missing image patches.&quot; The lesson is: define the self-supervised target in representation space, choose masking so that the model must learn semantic structure, and avoid forcing the system to spend capacity on irrelevant pixel detail.</p>
+<p>For our purposes, JEPA should be understood as a family of latent predictive objectives. The key idea is to learn a state that is predictive of the unknown or future part of the world at the level of abstract structure, not sensory minutiae.</p>
+<h3>4. Action-conditioned world models are the bridge from representation learning to control</h3>
+<p>Once actions matter, one needs an action-conditioned latent dynamics model. PlaNet is a canonical reference here. Hafner et al. learn a latent dynamics model from images and plan in latent space, using deterministic and stochastic components and a multi-step objective (&quot;latent overshooting&quot;) to improve long-horizon prediction [7]. The scientific point is that the latent state is judged by whether it supports accurate future reward-relevant dynamics, not by whether it can perfectly decode the input.</p>
+<p>DreamerV3 extends this line and shows that robust world-model training can be scaled across many domains with a single configuration [8]. It remains an arXiv paper rather than a conference publication, so it should not bear the full argumentative load, but it is a serious and influential reference because it demonstrates a practical consequence of stable latent world models: once the dynamics are learned, policy improvement can happen partly through imagination in latent space.</p>
+<p>There is also a more minimalist variant that is directly relevant to our use case. Self-Predictive Representations (SPR) learn an encoder whose latent state predicts future latent states under actions, while also enforcing consistency across augmented views [9]. This is close in spirit to what market making needs: good state representations should be predictive under a short-horizon action-conditioned transition model, even when labels are scarce.</p>
+<p>Finally, the ICLR 2024 work &quot;Bridging State and History Representations&quot; argues that many successful RL representation-learning schemes can be understood through a common notion of self-predictive abstraction [10]. That is a useful unifying statement. It suggests that the correct mathematical object in sequential decision problems is not a bag of features, but a history representation that predicts its own future evolution and the future quantities relevant to control.</p>
+<h3>5. What this implies for &quot;semi-supervised&quot; learning</h3>
+<p>The strongest general lesson from the above literature is that semi-supervised learning in sequential domains should usually take the following form:</p>
+<ol>
+<li>use large streams of unlabeled data to learn a predictive latent state;</li>
+<li>use much smaller labeled datasets to fit task heads on top of that state;</li>
+<li>continue adapting the latent model slowly and the task heads faster as new data arrive.</li>
+</ol>
+<p>This is exactly the regime of market making. Unlabeled data are effectively unlimited: quote streams, order-book snapshots, trades, cancellations, amendments, own decisions, own fills, and linked forecast logs. By contrast, clean labels for realized quote quality, adverse selection, or long-horizon inventory consequences are sparse, delayed, and expensive.</p>
+<p>Therefore, the natural object of learning is not a fixed feature table. It is a latent world state trained first by self-supervision, then refined by sparse supervised targets.</p>
+<h3>6. Stability and continual adaptation</h3>
+<p>The user requested two specific issues: temporal stability of parameters and a smooth path from an offline-trained model to live online learning.</p>
+<p>The relevant literature suggests that stability is not achieved by simple repeated dense SGD on the whole network. Some part of the system should be stable, and some part plastic. The cleanest way to achieve this is:</p>
+<ol>
+<li>pretrain a backbone world model offline;</li>
+<li>keep most of that backbone slowly changing or frozen;</li>
+<li>localize plasticity to a small subnetwork, such as adapters and heads;</li>
+<li>regularize that plastic subnetwork with anchoring and sparsity.</li>
+</ol>
+<p>This is where lasso-like or (L_0)-like penalties make sense. They are most useful when applied to the plastic subnetwork, not indiscriminately to the whole backbone. The goal is not simply to make weights small. The goal is to maintain a compact, stable update locus so that the online learner can adapt without catastrophic drift.</p>
+<h2>A Short Finance-Specific Translation</h2>
+<p>The representation-learning literature above is general. Why should it apply to markets? Because markets are partially observed sequential systems with abundant unlabeled data, sparse action-conditioned labels, strong nuisance variation, and short-horizon control.</p>
+<p>The finance literature gives supporting evidence but should not dominate the theory. Sirignano and Cont show that price formation has stable path-dependent structure across assets and time, which argues for learned sequence representations rather than single-step handcrafted summaries [11]. DeepLOB shows that structured architectures over order-book state can learn useful features automatically [12]. Kolm, Turiel, and Westray show that stationary order-flow-derived representations can outperform raw-book inputs, which is a reminder that the correct input space is the one that best preserves predictive structure, not necessarily the visually rawest one [13].</p>
+<p>So the scientific thesis is: the correct market-making state is a learned predictive latent state, not a manually curated list of dozens or hundreds of summary features.</p>
+<h2>Part II. What This Means for <code>Robert_MM_4</code></h2>
+<h3>1. Current <code>MM_4</code> should be read as a strong supervised readout on top of engineered state</h3>
+<p>The existing system is already more sophisticated than a shallow baseline. The core model is <code>JointMicroTransformerV1</code> in <code>nv/joint_mods/scorer.py</code>, a multi-head transformer that ingests market, action, forecast, inventory, and candidate information. This is a reasonable readout architecture.</p>
+<p>But from a representation-learning standpoint, the current stack is still dominated by engineered state compression. The local feature contract is broad in count but manual in semantics:</p>
+<ol>
+<li>market state in <code>nv/joint_mods/market_state.py</code> is compressed to 40 scalar features;</li>
+<li>recent own behavior in <code>nv/joint_mods/execution_memory.py</code> is compressed into short-window rates and means;</li>
+<li>forecast state in <code>nv/joint_mods/forecasting.py</code> and <code>nv/joint_mods/context.py</code> is expanded into many static <code>m1_*</code> and <code>fcst_*</code> columns;</li>
+<li>the frozen dataset manifest shows that the current training set is entirely <code>replay_surface</code>.</li>
+</ol>
+<p>Thus the present system has a respectable supervised learner, but not yet a learned world representation in the stronger sense used in modern self-supervised learning.</p>
+<h3>2. The main recommendation is to learn a latent state from fewer primitive streams, not to hand-engineer still more columns</h3>
+<p>The most important change in viewpoint is this: <code>MM_4</code> should likely move toward fewer hand-engineered columns, not more.</p>
+<p>Right now, many derived channels such as EMA features, <code>quality_*</code> features, and numerous linked-signal expansions are attempts to manually manufacture a good state. A world-model approach would instead start from a smaller causal basis, for example:</p>
+<ol>
+<li>a compact market stream: top-of-book and near-book prices and sizes, trades, and event timing;</li>
+<li>own-action and own-outcome events: quote placement, amend, cancel, first-fill, terminal outcome;</li>
+<li>current inventory and simple account state;</li>
+<li>linked directional/world-model outputs as a short history, not only the latest row.</li>
+</ol>
+<p>From these relatively few primitive streams, the model should learn a higher-dimensional latent state (z_t), for example 256-1024 dimensions, possibly overcomplete relative to the raw input dimension. The learned features in (z_t) are the substitute for feature engineering.</p>
+<h3>3. The right architecture for <code>MM_4</code></h3>
+<p>For this repository, the most plausible architecture is:</p>
+<ol>
+<li>an encoder (e_\theta) that maps a recent history of market, action, forecast, and inventory observations to a latent state (z_t);</li>
+<li>an action-conditioned transition model (f_\theta) that predicts future latent states (z_{t+1}, \dots, z_{t+H}) under candidate actions;</li>
+<li>a small set of supervised heads (h_\phi) for fill probability, adverse selection, edge retention, value, and inventory residuals.</li>
+</ol>
+<p>This preserves the parts of the current system that are already correct:</p>
+<ol>
+<li>explicit inventory remains explicit;</li>
+<li>explicit action candidates remain explicit;</li>
+<li>explicit downstream heads remain explicit.</li>
+</ol>
+<p>What changes is the representation beneath them. The current transformer should be reinterpreted as a candidate readout layer, not as the entire learning story.</p>
+<h3>4. A scientifically coherent training objective</h3>
+<p>The objective for <code>MM_4</code> should combine self-supervised prediction, action-conditioned latent dynamics, sparse supervised readouts, and stability terms. A reasonable template is</p>
+<h1>[
+\mathcal{L}</h1>
+<p>\lambda_{\text{ssl}}\mathcal{L}<em>{\text{masked-latent}}
++
+\lambda</em>{\text{dyn}}\mathcal{L}<em>{\text{future-latent}}
++
+\lambda</em>{\text{obs}}\mathcal{L}<em>{\text{selected-observables}}
++
+\lambda</em>{\text{sup}}\mathcal{L}<em>{\text{fill/adverse/value}}
++
+\lambda</em>{\text{anchor}}\Omega_{\text{anchor}}
++
+\lambda_{\text{sparse}}\Omega_{\text{sparse}}.
+]</p>
+<p>The terms mean:</p>
+<ol>
+<li><code>masked-latent</code>: a JEPA/data2vec-style loss, where part of the history is hidden and the model predicts latent representations of the hidden part;</li>
+<li><code>future-latent</code>: an action-conditioned SPR/PlaNet-style loss, where the model predicts future latent states under candidate actions;</li>
+<li><code>selected-observables</code>: not full reconstruction, but prediction of a small set of control-relevant observables such as spread regime, queue depletion, short-horizon mid move, or forecast revision class;</li>
+<li><code>fill/adverse/value</code>: the existing supervised market-making heads;</li>
+<li><code>anchor</code>: penalty to a prior competent parameter state;</li>
+<li><code>sparse</code>: lasso/group-lasso/(L_0)-style sparsity on the plastic subnetwork only.</li>
+</ol>
+<p>This is much closer to LeCun's world-model framing than the current purely supervised feature table pipeline.</p>
+<h3>5. Why <code>MM_4</code> is a good fit for this</h3>
+<p>This repository has exactly the asymmetry that favors semi-supervised representation learning:</p>
+<ol>
+<li>there is a large supply of unlabeled sequential data;</li>
+<li>there is a smaller supply of replay labels;</li>
+<li>live action-conditioned labels are sparse but economically important.</li>
+</ol>
+<p>The current manifest reports 105,221 rows, all from <code>replay_surface</code>. That means the current supervised dataset is not yet the real live-action distribution. This is not a reason to avoid representation learning. It is a reason to use it: pretrain the latent state on the much larger unlabeled stream, then use replay labels only to fit the readout layer and initial calibration.</p>
+<p>This also addresses one weakness visible in the current training logs: the latest evaluation snapshot reports essentially zero value correlation and negative replay PnL on the pinned evaluation window. That is exactly the empirical signature of a representation bottleneck. The readout exists, but the learned state is not yet sufficiently discriminative.</p>
+<h3>6. Response to the two requested practical issues</h3>
+<h4>(A) Over-time stability: lasso plus zeroing</h4>
+<p>The repository already contains a primitive version of this idea through <code>lambda_prev_l2</code> and <code>prune_weakest_frac</code>. Conceptually, that is pointing in the right direction, but it is too blunt if applied globally.</p>
+<p>My recommendation is:</p>
+<ol>
+<li>keep a largely stable backbone world model;</li>
+<li>define a small plastic subnetwork, ideally adapters plus the output heads;</li>
+<li>apply lasso, group-lasso, or approximate (L_0) regularization only to this plastic subnetwork;</li>
+<li>if hard zeroing is used, zero the smallest weights only inside that plastic subnetwork;</li>
+<li>maintain an anchoring penalty to the previous competent state;</li>
+<li>replay offline data during online updates so the support does not drift rapidly.</li>
+</ol>
+<p>So the answer is yes, but the object of shrinkage should be the plastic module, not the entire model.</p>
+<h4>(B) Smooth learning from offline training to real actions</h4>
+<p>The clean path is:</p>
+<ol>
+<li><strong>Stage 0: offline self-supervised pretraining.</strong>
+Train the encoder and transition model on unlabeled market and event streams.</li>
+<li><strong>Stage 1: offline supervised readout fitting.</strong>
+Fit the existing heads on replay-surface labels.</li>
+<li><strong>Stage 2: online semi-supervised continuation.</strong>
+Continue self-supervised updates online on unlabeled live streams, but at a low rate and with anchoring.</li>
+<li><strong>Stage 3: online supervised head/adaptor updates.</strong>
+Update only the plastic readout module on realized live action outcomes.</li>
+<li><strong>Stage 4: rare backbone refreshes.</strong>
+Unfreeze a slightly larger subset only after enough live data accumulate.</li>
+</ol>
+<p>This is smoother than periodic stop-and-retrain cycles because the backbone is already learning from unlabeled stream continuity, while the high-risk supervised updates are localized.</p>
+<h3>7. What I would and would not change in <code>MM_4</code></h3>
+<p>I would change:</p>
+<ol>
+<li>the philosophy of state construction, from manual expansion toward predictive latent learning;</li>
+<li>the training schedule, from mostly supervised replay fitting toward self-supervised pretraining plus supervised readouts;</li>
+<li>the online update path, from a separate shallow refitter toward a shared latent backbone with small plastic online heads.</li>
+</ol>
+<p>I would not change:</p>
+<ol>
+<li>the explicit inventory channel;</li>
+<li>the explicit action/candidate structure;</li>
+<li>the multi-head decomposition into fill, adverse selection, value, and inventory-related targets;</li>
+<li>the presence of a shallow linear sidecar, which is still useful as a calibration benchmark.</li>
+</ol>
+<h2>Bottom Line</h2>
+<p>The correct next move for <code>Robert_MM_4</code> is not more market-specific feature engineering. It is general predictive representation learning applied to a market-making problem.</p>
+<p>In the most compact form: learn a world model first, then attach market-making heads to it.</p>
+<p>The representation should be learned from compact primitive streams and should expand them into a higher-dimensional latent state that is predictive, invariant to nuisance variation, and action-conditioned. That latent state should be trained mostly from self-supervision and only secondarily from sparse labels. Online learning should continue in that same latent space, with plasticity localized to a small sparse subnetwork and protected by anchoring and replay.</p>
+<p>That is the LeCun/JEPA/world-model interpretation of what <code>MM_4</code> should become.</p>
+<h2>References</h2>
+<ol>
+<li>Aaron van den Oord, Yazhe Li, and Oriol Vinyals, &quot;Representation Learning with Contrastive Predictive Coding,&quot; 2018/2019. <a href="https://arxiv.org/abs/1807.03748">https://arxiv.org/abs/1807.03748</a></li>
+<li>Jean-Bastien Grill et al., &quot;Bootstrap Your Own Latent: A New Approach to Self-Supervised Learning,&quot; <em>NeurIPS</em> 2020. <a href="https://papers.nips.cc/paper/2020/hash/f3ada80d5c4ee70142b17b8192b2958e-Abstract.html">https://papers.nips.cc/paper/2020/hash/f3ada80d5c4ee70142b17b8192b2958e-Abstract.html</a></li>
+<li>Kaiming He et al., &quot;Masked Autoencoders Are Scalable Vision Learners,&quot; <em>CVPR</em> 2022. <a href="https://openaccess.thecvf.com/content/CVPR2022/html/He_Masked_Autoencoders_Are_Scalable_Vision_Learners_CVPR_2022_paper.html">https://openaccess.thecvf.com/content/CVPR2022/html/He_Masked_Autoencoders_Are_Scalable_Vision_Learners_CVPR_2022_paper.html</a></li>
+<li>Alexei Baevski et al., &quot;data2vec: A General Framework for Self-supervised Learning in Speech, Vision and Language,&quot; <em>ICML / PMLR</em> 2022. <a href="https://proceedings.mlr.press/v162/baevski22a.html">https://proceedings.mlr.press/v162/baevski22a.html</a></li>
+<li>Yann LeCun, &quot;A Path Towards Autonomous Machine Intelligence,&quot; OpenReview, 2022. <a href="https://openreview.net/pdf/315d43ba26f55357a84cec9a7ed15a6610094f79.pdf">https://openreview.net/pdf/315d43ba26f55357a84cec9a7ed15a6610094f79.pdf</a></li>
+<li>Mahmoud Assran et al., &quot;Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture,&quot; <em>CVPR</em> 2023. <a href="https://arxiv.org/abs/2301.08243">https://arxiv.org/abs/2301.08243</a></li>
+<li>Danijar Hafner et al., &quot;Learning Latent Dynamics for Planning from Pixels,&quot; <em>ICML</em> 2019. <a href="https://arxiv.org/abs/1811.04551">https://arxiv.org/abs/1811.04551</a></li>
+<li>Danijar Hafner et al., &quot;Mastering Diverse Domains through World Models,&quot; 2023. <a href="https://arxiv.org/abs/2301.04104">https://arxiv.org/abs/2301.04104</a></li>
+<li>Max Schwarzer et al., &quot;Data-Efficient Reinforcement Learning with Self-Predictive Representations,&quot; <em>ICLR</em> 2021. <a href="https://openreview.net/pdf?id=uCQfPZwRaUu">https://openreview.net/pdf?id=uCQfPZwRaUu</a></li>
+<li>Tianwei Ni et al., &quot;Bridging State and History Representations: Understanding Self-Predictive RL,&quot; <em>ICLR</em> 2024. <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/666c1861d709bd84e20b6e0e02a2c223-Abstract-Conference.html">https://proceedings.iclr.cc/paper_files/paper/2024/hash/666c1861d709bd84e20b6e0e02a2c223-Abstract-Conference.html</a></li>
+<li>Justin Sirignano and Rama Cont, &quot;Universal features of price formation in financial markets: perspectives from deep learning,&quot; <em>Quantitative Finance</em> 19(9), 2019. <a href="https://rama.cont.perso.math.cnrs.fr/pdf/SirignanoCont2019.pdf">https://rama.cont.perso.math.cnrs.fr/pdf/SirignanoCont2019.pdf</a></li>
+<li>Zihao Zhang, Stefan Zohren, and Stephen Roberts, &quot;DeepLOB: Deep Convolutional Neural Networks for Limit Order Books,&quot; <em>IEEE Transactions on Signal Processing</em> 2019. <a href="https://arxiv.org/abs/1808.03668">https://arxiv.org/abs/1808.03668</a></li>
+<li>Petter N. Kolm, Jeremy Turiel, and Nicholas Westray, &quot;Deep Order Flow Imbalance: Extracting Alpha at Multiple Horizons from the Limit Order Book,&quot; SSRN, 2021. <a href="https://ssrn.com/abstract=3900141">https://ssrn.com/abstract=3900141</a></li>
+</ol>
+
+      <div class="footer">Generated from the Markdown source in <code>Robert_MM_4</code>.</div>
+    </article>
+  </main>
+</body>
+</html>

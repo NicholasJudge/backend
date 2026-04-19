@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MM4 Nick Summary</title>
+  <style>
+:root {
+  --bg: #f6f1e8;
+  --paper: #fffdf8;
+  --ink: #1d1a17;
+  --muted: #6d655d;
+  --rule: #d9cfc0;
+  --accent: #9f3f2f;
+  --accent-soft: #f4e4d8;
+  --code-bg: #f3eee6;
+  --link: #0b5cad;
+  --shadow: 0 18px 48px rgba(60, 41, 19, 0.10);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(159,63,47,0.10), transparent 28%),
+    linear-gradient(180deg, #efe6d8 0%, var(--bg) 30%, #f9f6f0 100%);
+  color: var(--ink);
+  font: 18px/1.65 Georgia, 'Times New Roman', serif;
+}
+header.site {
+  padding: 28px 20px 16px;
+}
+header.site .shell, main.shell {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.brand {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero {
+  margin-top: 10px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  font-weight: 700;
+}
+.hero p {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--muted);
+}
+nav.top {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+nav.top a {
+  color: var(--link);
+  text-decoration: none;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid rgba(89, 69, 46, 0.10);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 28px 26px;
+}
+main.shell {
+  padding: 8px 20px 40px;
+}
+.notice {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: #5a2c21;
+  font-size: 0.95rem;
+}
+.notice code { background: rgba(255,255,255,0.45); }
+.article { overflow-wrap: anywhere; }
+.article h1, .article h2, .article h3, .article h4 { line-height: 1.16; margin-top: 1.6em; margin-bottom: 0.55em; }
+.article h1 { font-size: 2rem; }
+.article h2 { font-size: 1.45rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+.article h3 { font-size: 1.16rem; }
+.article p, .article ul, .article ol, .article table, .article pre, .article blockquote { margin-top: 0.9em; margin-bottom: 0.9em; }
+.article ul, .article ol { padding-left: 1.4em; }
+.article li + li { margin-top: 0.24em; }
+.article a { color: var(--link); }
+.article code {
+  background: var(--code-bg);
+  padding: 0.12em 0.32em;
+  border-radius: 5px;
+  font-size: 0.92em;
+}
+.article pre {
+  background: #1e1d1b;
+  color: #f9f7f2;
+  padding: 14px 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 0.92rem;
+}
+.article pre code { background: transparent; padding: 0; color: inherit; }
+.article blockquote {
+  border-left: 4px solid var(--accent);
+  margin-left: 0;
+  padding-left: 16px;
+  color: #5f554c;
+}
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  font-size: 0.95rem;
+}
+.article th, .article td {
+  border: 1px solid var(--rule);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.article th { background: #f5efe4; }
+.footer {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+.tile {
+  background: var(--paper);
+  border-radius: 18px;
+  border: 1px solid rgba(89, 69, 46, 0.10);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.tile h2 { margin: 0 0 8px; font-size: 1.3rem; }
+.tile p { margin: 0 0 16px; color: var(--muted); }
+.tile a { color: var(--link); text-decoration: none; font-weight: 600; }
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .card { padding: 22px 18px; border-radius: 16px; }
+  header.site { padding: 22px 14px 10px; }
+  main.shell { padding: 8px 14px 30px; }
+}
+</style>
+  
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$'], ['\(','\)']], displayMath: [['$$','$$'], ['\[','\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+</head>
+<body>
+  <header class="site">
+    <div class="shell">
+      <div class="brand">Robert MM4 Reading Pack</div>
+      <div class="hero">
+        <h1>MM4 Nick Summary</h1>
+        <p>Compact architecture and training reference for MM4.</p>
+      </div>
+      <nav class="top">
+        <a href="index.html">Index</a>
+        <a href="for_nick_summary.html">MM4 Summary</a>
+        <a href="representational_learning_mm4_report.html">Representation Report</a>
+      </nav>
+    </div>
+  </header>
+  <main class="shell">
+    <div class="notice">Hosted phone view. Repo-local links may not resolve here; the two bundled documents above do.</div>
+    <article class="card article">
+      <h1>MM4 Wireframe</h1>
+<p>This note is the compact reference for <code>Robert_MM_4</code> as built on <code>2026-04-18</code>. It describes the current model stack, the feature flow between layers, the statistical learning contract, and the control-board surfaces needed to diagnose failure modes.</p>
+<p>MM4 preserves the Robert outer-loop structure, but retargets that loop to the final live object. The notebook, control board, frozen eval window, publish path, generated live config, and launch or smoke commands are all MM4-scoped and judged against the joint execution transformer used by the real live runner.</p>
+<p>Detailed grouped input appendix: <a href="/home/njudge/priv1/Robert_MM_4/for_nick_inputs.md:1">for_nick_inputs.md</a>.</p>
+<h2>1. Model Inventory</h2>
+<p>This section is the answer to &quot;what is each actual model, what information does it represent, and what does it emit?&quot;</p>
+<h3>1.1 World model</h3>
+<p>The world model is a slow cross-asset state model. It is not an MM4 layer. MM4 receives its outputs from the linked signal row and uses them both as compact planner summary fields and as raw <code>m1_*</code> features.</p>
+<table>
+<thead>
+<tr>
+  <th>item</th>
+  <th>actual information represented</th>
+  <th>current live form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>purpose</td>
+  <td>Slow market-state model. Operationally: &quot;what does the next <code>1/5/15</code> minute BTC environment look like, given the recent cross-asset tape?&quot;</td>
+  <td>BTC-targeted, with BTC/ETH/LINK/SOL context.</td>
+</tr>
+<tr>
+  <td><code>init_D</code></td>
+  <td><code>148</code> external per-minute inputs. Operationally: <code>34</code> fields for each of <code>4</code> assets plus <code>12</code> exchange-calendar dummies. Internally, the current checkpoint also derives a <code>12</code>-wide state-context tensor from close delta, bar range, and volume across the <code>4</code> assets before the state stem.</td>
+  <td>Shared input basis with the directional model.</td>
+</tr>
+<tr>
+  <td>inputs from raw OHLCV</td>
+  <td><code>4 assets x {Open, High, Low, Close, Volume}</code>. Operationally: the minute tape for BTC, ETH, LINK, and SOL.</td>
+  <td>Part of the shared <code>148</code>-field linked feature payload.</td>
+</tr>
+<tr>
+  <td>inputs from engineered linked features</td>
+  <td><code>4 assets x {D_*, ytfB*, hl*, dc*, acc*, mom*, dv*, v_dir}</code>. Operationally: normalized return, range, acceleration, momentum, and volume-interaction features derived from that minute tape.</td>
+  <td>Full grouped definitions live in <a href="/home/njudge/priv1/Robert_MM_4/for_nick_inputs.md:1">for_nick_inputs.md</a>.</td>
+</tr>
+<tr>
+  <td>inputs from exchange calendars</td>
+  <td><code>12</code> <code>exc_*</code> dummies. Operationally: known-in-advance global exchange-session indicators aligned to the look-ahead timestamp.</td>
+  <td>These are the non-asset features inside the linked payload.</td>
+</tr>
+<tr>
+  <td>mod_main_layers</td>
+  <td><code>VolatilityFirstTransformer</code>: causal-conv state stem + causal-conv feature stem -&gt; <code>6</code> sparse transformer layers with <code>D=128</code>, head dim <code>256</code>, local window <code>90</code>, landmark stride <code>32</code>, dropout <code>0.01</code>, shared SwiGLU projection, and multihorizon auxiliary heads.</td>
+  <td>Same backbone class as the directional model.</td>
+</tr>
+<tr>
+  <td><code>world_edge_bps</code> / <code>m1_world_edge_bps</code></td>
+  <td>BTC <code>5</code> minute predicted return in basis points (world model output). This is the compact world edge used by the forecast aggregate.</td>
+  <td>Derived from the aux price head at <code>h=5</code>, then passed into MM4 as both compact <code>fcst_world_*</code> summary and raw <code>m1_*</code> features.</td>
+</tr>
+<tr>
+  <td><code>world_confidence</code> / <code>m1_world_confidence</code></td>
+  <td><code>0-1</code> trust weight on the world edge. Operationally: &quot;how hard should the aggregate forecast lean on the world model right now?&quot;</td>
+  <td>Multiplies the world edge inside the aggregate forecast.</td>
+</tr>
+<tr>
+  <td><code>m1_world_price_*</code>, <code>m1_world_range_*</code>, <code>m1_world_volume_*</code></td>
+  <td>Full multihorizon world-model surface: predicted future price return, realized range, and volume for <code>h=1,5,15</code> (world model outputs).</td>
+  <td>These tell MM4 what the world model thinks will happen, not just one scalar edge.</td>
+</tr>
+<tr>
+  <td><code>m1_world_*_{target,error,abs_error}</code></td>
+  <td>Recent aligned miss surface for those world predictions. Operationally: &quot;where has the world model recently been right or wrong?&quot;</td>
+  <td>MM4 sees both the world forecast surface and the recent world-model error surface.</td>
+</tr>
+<tr>
+  <td>model link</td>
+  <td>Implementation, live weights, and grouped input appendix.</td>
+  <td><a href="/home/njudge/priv1/nv/cur_live_mod/train_linked.py:1021">train_linked.py</a>, <a href="/home/njudge/priv1/nv/cur_live_mod/best_linked_world_model.pt">best_linked_world_model.pt</a>, <a href="/home/njudge/priv1/Robert_MM_4/for_nick_inputs.md:1">for_nick_inputs.md</a></td>
+</tr>
+</tbody>
+</table>
+<h3>1.2 Directional model</h3>
+<p>The directional model uses the same backbone class as the world model, but its main job is to answer &quot;what is the sign and strength of the BTC move over the next <code>5</code> minutes?&quot; It also emits the same auxiliary price/range/volume surface and error surface.</p>
+<table>
+<thead>
+<tr>
+  <th>item</th>
+  <th>actual information represented</th>
+  <th>current live form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>purpose</td>
+  <td>Directional BTC move model. Operationally: &quot;how far, and with what sign, should BTC move over the next <code>5</code> minutes?&quot;</td>
+  <td>BTC-targeted linked directional checkpoint.</td>
+</tr>
+<tr>
+  <td><code>init_D</code></td>
+  <td><code>148</code> external per-minute inputs, exactly the same shared linked input basis as the world model.</td>
+  <td><code>T=960</code>, <code>warm_up_T=480</code>, BTC/ETH/LINK/SOL context.</td>
+</tr>
+<tr>
+  <td>inputs from raw OHLCV</td>
+  <td>Same as the world model.</td>
+  <td>See the shared linked-model appendix in <a href="/home/njudge/priv1/Robert_MM_4/for_nick_inputs.md:1">for_nick_inputs.md</a>.</td>
+</tr>
+<tr>
+  <td>inputs from engineered linked features</td>
+  <td>Same as the world model.</td>
+  <td>Same <code>148</code>-field linked payload, different objective and output heads.</td>
+</tr>
+<tr>
+  <td>inputs from exchange calendars</td>
+  <td>Same as the world model.</td>
+  <td>Shared <code>12</code> <code>exc_*</code> dummies.</td>
+</tr>
+<tr>
+  <td>mod_main_layers</td>
+  <td><code>VolatilityFirstTransformer</code>: causal-conv stems -&gt; <code>6</code> sparse transformer layers with <code>D=128</code>, head dim <code>256</code>, local window <code>90</code>, landmark stride <code>32</code>, dropout <code>0.01</code>, shared SwiGLU projection, aux price/range/volume heads, then expected/shock decision transformers plus a directional head.</td>
+  <td>Current live checkpoint is the directional variant of the linked stack.</td>
+</tr>
+<tr>
+  <td><code>forecast_delta_px_5m</code>, <code>forecast_ret_5m</code>, <code>forecast_bps_5m</code></td>
+  <td>Predicted BTC <code>5</code> minute move in dollars, return, and basis points (directional model outputs).</td>
+  <td>These are the direct &quot;how much up or down?&quot; fields carried through the linked row and into MM4 as <code>m1_*</code>.</td>
+</tr>
+<tr>
+  <td><code>forecast_zscore</code></td>
+  <td>Predicted BTC <code>5</code> minute move normalized by forecast sigma. Operationally: &quot;how large is the move relative to its own scale?&quot;</td>
+  <td>Used to derive signal strength and freshness.</td>
+</tr>
+<tr>
+  <td><code>signal_strength</code></td>
+  <td>Clipped directional conviction. Operationally: &quot;how strong is the directional call, independent of sign?&quot;</td>
+  <td>Used in linked forecast freshness logic.</td>
+</tr>
+<tr>
+  <td><code>final_directional_edge_bps</code> / <code>m1_final_directional_edge_bps</code></td>
+  <td>Compact directional edge that enters the forecast aggregate.</td>
+  <td>Weighted inside the aggregate forecast before MM4 sees the final <code>fcst_*</code> summary.</td>
+</tr>
+<tr>
+  <td><code>final_directional_confidence</code> / <code>m1_final_directional_confidence</code></td>
+  <td><code>0-1</code> trust weight on the compact directional edge.</td>
+  <td>Multiplies the directional edge inside the aggregate forecast.</td>
+</tr>
+<tr>
+  <td><code>m1_directional_aux_*</code> and <code>m1_directional_aux_*_{target,error,abs_error}</code></td>
+  <td>Full auxiliary price/range/volume surface and recent miss surface for <code>h=1,5,15</code>. Operationally: &quot;what else did the directional model think would happen, and how wrong has it recently been?&quot;</td>
+  <td>These are forwarded directly into the MM4 forecast token.</td>
+</tr>
+<tr>
+  <td>model link</td>
+  <td>Implementation, live weights, and grouped input appendix.</td>
+  <td><a href="/home/njudge/priv1/nv/cur_live_mod/train_linked.py:1021">train_linked.py</a>, <a href="/home/njudge/priv1/nv/cur_live_mod/best_linked_model.pt">best_linked_model.pt</a>, <a href="/home/njudge/priv1/Robert_MM_4/for_nick_inputs.md:1">for_nick_inputs.md</a></td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 Net-Lev Ideal-Point sidecar</h3>
+<p>The old MM1 model is no longer the final quote-selection model. In the live MM4 stack it survives as a net-lev ideal-point sidecar: it says where the legacy execution policy would like net leverage or inventory to be.</p>
+<table>
+<thead>
+<tr>
+  <th>item</th>
+  <th>actual information represented</th>
+  <th>current live form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>purpose</td>
+  <td>Legacy execution-sequence model used as a net-lev ideal-point controller. Operationally: &quot;where would the older MM1 policy want our net leverage to sit right now?&quot;</td>
+  <td>Live wrapper rebuilds MM1 inputs from current market rows and linked signal state.</td>
+</tr>
+<tr>
+  <td><code>init_D</code></td>
+  <td><code>143</code> external features per time step = <code>39</code> market-sequence inputs + <code>104</code> slow-forecast inputs.</td>
+  <td><code>T=960</code>, <code>warm_up_T=480</code>.</td>
+</tr>
+<tr>
+  <td>inputs from market sequence</td>
+  <td>Local book and trade state plus slow microstructure context over the trailing market window.</td>
+  <td>Exact names and grouped definitions are in <a href="/home/njudge/priv1/Robert_MM_4/for_nick_inputs.md:1">for_nick_inputs.md</a>.</td>
+</tr>
+<tr>
+  <td>inputs from linked forecasts</td>
+  <td>Compact directional summary, compact world summary, full directional aux target/error surface, full world aux target/error surface, and signal timing metadata.</td>
+  <td>This sidecar sees more of the full linked aux surface than the published MM4 artifact does.</td>
+</tr>
+<tr>
+  <td>mod_main_layers</td>
+  <td><code>LocalMMSequenceTransformer</code>: causal-conv market stem + causal-conv forecast stem -&gt; <code>6</code> sparse transformer layers with <code>D=128</code>, head dim <code>256</code>, local window <code>90</code>, landmark stride <code>32</code>, dropout <code>0.01</code>, shared SwiGLU projection, execution heads for activity, adverse selection, edge, value, action direction/amplitude, and inventory control.</td>
+  <td>Active MM1 checkpoint still uses the old execution-head family.</td>
+</tr>
+<tr>
+  <td>raw MM1 outputs</td>
+  <td><code>activity_logits</code>, <code>adverse_{long,short}_logits</code>, <code>edge_{long,short}_bps</code>, <code>value_score</code>, <code>action_direction</code>, <code>action_amplitude</code>, <code>inventory_residual_frac</code>, <code>inventory_gate</code>.</td>
+  <td>These are internal to MM1 and mostly not consumed directly by MM4.</td>
+</tr>
+<tr>
+  <td>net-lev ideal point output</td>
+  <td><code>m1_ideal_state_x</code>. Operationally: the legacy ideal net leverage or inventory state, taken from MM1 policy <code>leverage[last]</code>.</td>
+  <td>Runtime can join this into the MM4 forecast block as a scalar control feature.</td>
+</tr>
+<tr>
+  <td>model link</td>
+  <td>Live wrapper, old model class, live weights, and grouped input appendix.</td>
+  <td><a href="/home/njudge/priv1/nv/joint_mods/mm1_live.py:328">mm1_live.py</a>, <a href="/home/njudge/priv1/Robert_MM_1/v1/mm_model_lib.py:576">mm_model_lib.py</a>, <a href="/home/njudge/priv1/Robert_MM_1/v1/models/best_mm_model.pt">best_mm_model.pt</a>, <a href="/home/njudge/priv1/Robert_MM_4/for_nick_inputs.md:1">for_nick_inputs.md</a></td>
+</tr>
+</tbody>
+</table>
+<h3>1.4 MM4 joint execution model</h3>
+<p>This is the actual final live quote-selection model. It is the only model in the stack that directly scores candidate actions.</p>
+<table>
+<thead>
+<tr>
+  <th>item</th>
+  <th>actual information represented</th>
+  <th>current live form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>purpose</td>
+  <td>Final joint execution model. Operationally: &quot;given the market state, forecast state, inventory state, and a candidate quote, should we place this quote and how good is it?&quot;</td>
+  <td>Final live scorer used by the real runner.</td>
+</tr>
+<tr>
+  <td><code>init_D</code></td>
+  <td>Published live artifact contract: <code>40</code> market features per sampled market row over <code>T=960</code>, plus <code>228</code> forecast features, <code>30</code> inventory/control features, <code>55</code> candidate-action features, and <code>1</code> categorical candidate-style id. Operationally, the non-embedded control path is <code>313</code> numeric features plus the style id, while the market path is a <code>T x 40</code> sequence.</td>
+  <td>This is the feature-name contract stored in <a href="/home/njudge/control_board_data/Robert_MM_4/v1/live/latest_best_joint_exec.pt">latest_best_joint_exec.pt</a>.</td>
+</tr>
+<tr>
+  <td>inputs from market sequence</td>
+  <td>Local book and trade state plus slow microstructure context.</td>
+  <td><code>40</code> features; grouped names are listed in <a href="/home/njudge/priv1/Robert_MM_4/for_nick_inputs.md:1">for_nick_inputs.md</a>.</td>
+</tr>
+<tr>
+  <td>inputs from forecast block</td>
+  <td>Forecast aggregate summary, compact directional summary, linked-service carry fields, and a large world-model price/range/volume surface with aligned error terms.</td>
+  <td>Published live artifact uses <code>228</code> forecast features.</td>
+</tr>
+<tr>
+  <td>inputs from inventory/control</td>
+  <td>Age-bucket inventory state, planner outputs, and stream-quality state.</td>
+  <td>Published live artifact uses <code>30</code> inventory/control features.</td>
+</tr>
+<tr>
+  <td>inputs from candidate action</td>
+  <td>Candidate quote geometry, queue state, book-shape state, and macro planner carryover for the specific quote being scored.</td>
+  <td>Published live artifact uses <code>55</code> candidate features plus the style id.</td>
+</tr>
+<tr>
+  <td>mod_main_layers</td>
+  <td><code>JointMicroTransformerV1</code>: project market/forecast/inventory/action tokens into <code>d_model=96</code>, pool market tokens with <code>market_pool_stride=2</code>, then run <code>3</code> transformer blocks with <code>nhead=4</code>, <code>ff_mult=4</code>, dropout <code>0.05</code>, <code>decision_query</code> action token, and separate inventory/action readouts. Current live artifact has <code>control_film=false</code>.</td>
+  <td>This is the active MM4 architecture, not a placeholder.</td>
+</tr>
+<tr>
+  <td>inventory-control outputs</td>
+  <td><code>micro_alpha_short_bps</code>, <code>micro_alpha_long_bps</code>, <code>inventory_residual_frac</code>, <code>inventory_gate</code>. Operationally: &quot;how should the planner shift target inventory, urgency, and reservation bias before choosing a quote?&quot;</td>
+  <td>These feed the planner rerun before candidate ranking.</td>
+</tr>
+<tr>
+  <td>candidate-scoring outputs</td>
+  <td><code>fill_prob</code>, <code>adverse_prob</code>, <code>edge_short_ticks</code>, <code>edge_long_ticks</code>, <code>value_score</code>. Operationally: &quot;will this quote fill, get run over, carry edge, and have good replay value?&quot;</td>
+  <td>These are the final per-candidate outputs used for ranking.</td>
+</tr>
+<tr>
+  <td>contract note</td>
+  <td>The published artifact and the newer training code are not the same contract. The artifact linked here still serializes the older <code>228 / 30 / 55</code> forecast/inventory/candidate split, even though newer in-tree training code discusses leaner <code>122 / 40 / 65</code> contracts.</td>
+  <td>For the actual published input list, use the artifact-linked appendix below.</td>
+</tr>
+<tr>
+  <td>model link</td>
+  <td>Source, active config, live weights, and grouped input appendix.</td>
+  <td><a href="/home/njudge/priv1/nv/joint_mods/scorer.py:175">scorer.py</a>, <a href="/home/njudge/priv1/Robert_MM_4/v1/control.yaml:112">control.yaml</a>, <a href="/home/njudge/control_board_data/Robert_MM_4/v1/live/latest_best_joint_exec.pt">latest_best_joint_exec.pt</a>, <a href="/home/njudge/priv1/Robert_MM_4/for_nick_inputs.md:1">for_nick_inputs.md</a></td>
+</tr>
+</tbody>
+</table>
+<p>The live causal chain is:</p>
+<p><code>world model + directional model + linked signal row -&gt; forecast aggregate -&gt; baseline planner -&gt; net-lev ideal-point sidecar + inventory or quality state -&gt; MM4 inventory heads -&gt; planner rerun -&gt; JR_exec candidate rows -&gt; MM4 candidate heads -&gt; selector -&gt; replay or live outcome</code></p>
+<h2>2. MM4 Input Blocks</h2>
+<table>
+<thead>
+<tr>
+  <th>block</th>
+  <th>current MM4 trained contract</th>
+  <th>role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>market sequence</td>
+  <td>40 features</td>
+  <td>local microstructure state over time</td>
+</tr>
+<tr>
+  <td>forecast block</td>
+  <td>228 features in the published live artifact</td>
+  <td>compact <code>fcst_*</code> planner summary plus raw <code>m1_*</code> payload, dominated by the world-model surface</td>
+</tr>
+<tr>
+  <td>inventory block</td>
+  <td>30 features in the published live artifact</td>
+  <td><code>inv_*</code>, <code>plan_*</code>, <code>quality_*</code></td>
+</tr>
+<tr>
+  <td>candidate block</td>
+  <td>55 features + 5-style id in the published live artifact</td>
+  <td>candidate-specific execution state</td>
+</tr>
+</tbody>
+</table>
+<h3>2.1 Forecast block</h3>
+<ul>
+<li><code>fcst_*</code> is the compact planner-facing summary: aggregate edge, confidence, z-score, freshness, source flags, and horizon-0 summary.</li>
+<li>In the published live artifact, <code>m1_*</code> is not &quot;everything upstream.&quot; It is mostly:<ul>
+<li>compact directional summary fields and probabilities;</li>
+<li>signal-service carry fields such as target inventory and reservation metadata;</li>
+<li>the full world-model price/range/volume surface and its aligned error terms.</li>
+</ul>
+</li>
+<li>The published live artifact does not currently serialize <code>m1_ideal_state_x</code> in its forecast feature list, even though the runtime stack can compute that sidecar field.</li>
+<li>The newer in-tree training code discusses a leaner <code>122</code>-feature forecast block. The artifact linked in this note still stores the older <code>228</code>-feature forecast contract.</li>
+</ul>
+<h3>2.2 Inventory and planner block</h3>
+<ul>
+<li><code>inv_*</code> comes from the age-bucket ledger: signed notional by bucket, bucket entry edge, net inventory, gross inventory, and weighted inventory age.</li>
+<li><code>plan_*</code> is the analytic planner state: desired inventory, buy/sell budgets, max net/gross inventory, liquidation urgency, reservation offset, alpha half-life, and MM4 micro-blend terms.</li>
+<li>In the published live artifact, <code>quality_*</code> is still the smaller stream-health block: collector gap, recent fill rows, recent market rows, micro-data disabled or stale, and private-stream health.</li>
+</ul>
+<h3>2.3 Candidate block</h3>
+<ul>
+<li>Candidate styles are <code>join_touch</code>, <code>inside_improve</code>, <code>target_anchor</code>, <code>band_edge</code>, <code>other</code>.</li>
+<li>The published live artifact's <code>55</code> candidate features mix local quote geometry with macro state: queue ahead/behind, touch distance, candidate-to-mid, candidate-to-microprice, aggressiveness, expected wait, forecast summary, reservation edge, target inventory, current inventory, and inventory gap.</li>
+<li>The explicit recent same-side execution-memory features live in newer in-tree candidate builders, but they are not part of the published <code>55</code>-feature candidate contract stored in the linked artifact.</li>
+</ul>
+<h3>2.4 How upstream model state reaches the final order decision</h3>
+<ul>
+<li>World-model state reaches MM4 twice:<ul>
+<li>as compact planner summary through <code>fcst_world_*</code>;</li>
+<li>as raw world forecast and error surfaces through <code>m1_world_*</code>.</li>
+</ul>
+</li>
+<li>Directional-model state reaches MM4 twice:<ul>
+<li>as compact planner summary through <code>fcst_final_directional_*</code>;</li>
+<li>as compact linked-signal carry fields such as <code>m1_forecast_*</code>, <code>m1_direction_prob_*</code>, and <code>m1_signal_strength</code>.</li>
+</ul>
+</li>
+<li>The published live artifact does not currently expose the full directional aux surface and does not currently serialize the net-lev ideal-point sidecar field <code>m1_ideal_state_x</code> as an MM4 forecast input.</li>
+<li>Current-versus-target inventory state is explicit through <code>inv_*</code>, <code>plan_*</code>, <code>inventory_target_notional_usd</code>, <code>inventory_notional_usd</code>, <code>inventory_gap_notional_usd</code>, and <code>inventory_ratio</code>.</li>
+<li>In the published live artifact, recent quote-quality memory is still mostly implicit. The model sees the current book snapshot, planner state, inventory gap, and replay-trained targets, but not the newer explicit trailing execution-memory block.</li>
+</ul>
+<h2>3. What MM4 Predicts</h2>
+<p>MM4 is <code>JointMicroTransformerV1</code> in <code>nv/joint_mods/scorer.py</code>. The current mode is <code>decision_query</code>.</p>
+<table>
+<thead>
+<tr>
+  <th>output head group</th>
+  <th>outputs</th>
+  <th>live use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>inventory-control heads</td>
+  <td><code>inventory_residual_frac</code>, <code>inventory_gate</code>, <code>micro_alpha_short_bps</code>, <code>micro_alpha_long_bps</code></td>
+  <td>fed back into the planner before order construction</td>
+</tr>
+<tr>
+  <td>candidate-scoring heads</td>
+  <td><code>fill_logits/prob</code>, <code>adverse_logits/prob</code>, <code>edge_short_ticks</code>, <code>edge_long_ticks</code>, <code>value_score</code></td>
+  <td>used to rank JR_exec candidates</td>
+</tr>
+</tbody>
+</table>
+<p>This is the main MM4 distinction from MM1. MM4 does not only estimate desired inventory. It also estimates execution quality at the candidate level and uses a second planner pass.</p>
+<h2>4. Statistical Learning Contract</h2>
+<h3>4.1 Data regime</h3>
+<ul>
+<li>Training is offline and replay-based, not policy-gradient RL.</li>
+<li>The data split is explicit and frozen:<ul>
+<li>train: <code>2026-04-14 15:05:00.068305969+00:00</code> to <code>2026-04-16 15:04:59.606575012+00:00</code></li>
+<li>eval: <code>2026-04-16 15:05:00+00:00</code> to <code>2026-04-16 17:05:00+00:00</code></li>
+</ul>
+</li>
+<li>Current dataset manifest:<ul>
+<li>rows: <code>1,145,175</code></li>
+<li>columns: <code>247</code></li>
+<li>eval rows before warmup/gap trimming: <code>59,452</code></li>
+</ul>
+</li>
+<li>Current causal contract:<ul>
+<li><code>batch_size=1</code></li>
+<li><code>seq_len=960</code></li>
+<li><code>warm_up_T=480</code></li>
+<li>contiguous block batches</li>
+<li>no contiguous-batch shuffle</li>
+<li><code>fresh_random_init_each_run=true</code></li>
+<li><code>resume_existing=false</code></li>
+</ul>
+</li>
+</ul>
+<h3>4.2 Supervision</h3>
+<p>The loss is a weighted sum of nine heads:</p>
+<table>
+<thead>
+<tr>
+  <th>head</th>
+  <th>target type</th>
+  <th>loss</th>
+  <th>current weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>fill</td>
+  <td>binary</td>
+  <td>BCE</td>
+  <td><code>0.08</code></td>
+</tr>
+<tr>
+  <td>adverse</td>
+  <td>binary</td>
+  <td>BCE</td>
+  <td><code>0.35</code></td>
+</tr>
+<tr>
+  <td>edge short</td>
+  <td>continuous</td>
+  <td>SmoothL1</td>
+  <td><code>0.08</code></td>
+</tr>
+<tr>
+  <td>edge long</td>
+  <td>continuous</td>
+  <td>SmoothL1</td>
+  <td><code>0.12</code></td>
+</tr>
+<tr>
+  <td>value</td>
+  <td>continuous</td>
+  <td>SmoothL1</td>
+  <td><code>1.00</code></td>
+</tr>
+<tr>
+  <td>alpha short</td>
+  <td>continuous</td>
+  <td>SmoothL1</td>
+  <td><code>0.02</code></td>
+</tr>
+<tr>
+  <td>alpha long</td>
+  <td>continuous</td>
+  <td>SmoothL1</td>
+  <td><code>0.04</code></td>
+</tr>
+<tr>
+  <td>inventory residual</td>
+  <td>continuous</td>
+  <td>SmoothL1</td>
+  <td><code>0.06</code></td>
+</tr>
+<tr>
+  <td>inventory gate</td>
+  <td>continuous</td>
+  <td>SmoothL1</td>
+  <td><code>0.06</code></td>
+</tr>
+</tbody>
+</table>
+<p>Target construction:</p>
+<ul>
+<li><code>value</code> is the main ranking target. When available, it comes from offline unit replay: passive entry, pathwise inventory marking, stale-inventory requoting, and a stale-inventory penalty.</li>
+<li><code>inventory_residual</code> is a bounded transform of <code>alpha_long</code>.</li>
+<li><code>inventory_gate</code> is a bounded magnitude transform of <code>alpha_long</code>.</li>
+</ul>
+<h3>4.3 Why it is only RL-like</h3>
+<p>The RL-like component is indirect:</p>
+<ol>
+<li>replay converts a candidate action and the subsequent path into economic consequences;</li>
+<li>those consequences supervise <code>value</code>, <code>fill</code>, <code>adverse</code>, and inventory-control heads jointly;</li>
+<li>the learned inventory heads alter the next planner output;</li>
+<li>held-out model selection is based on replay economics and behavioral constraints, not only prediction loss.</li>
+</ol>
+<p>What is absent:</p>
+<ul>
+<li>no policy-gradient update;</li>
+<li>no Bellman backup;</li>
+<li>no online exploration term;</li>
+<li>no direct live RL loop in the current MM4 baseline.</li>
+</ul>
+<h2>5. Live Decision Path</h2>
+<p>At each live decision time:</p>
+<ol>
+<li>build <code>forecast_features = fcst_* + m1_*</code>;</li>
+<li>build inventory and quality features from the ledger and streams;</li>
+<li>run the baseline planner with zero micro signal;</li>
+<li>run MM4 inventory heads with market state + forecast block + baseline planner state;</li>
+<li>rerun the planner with the inferred micro signal;</li>
+<li>generate JR_exec candidates;</li>
+<li>score candidates with MM4 candidate heads;</li>
+<li>select the candidate using predicted edge, fill, adverse risk, inventory gate, and a strong near-touch preference;</li>
+<li>log the realized or replay consequence for the next training pass.</li>
+</ol>
+<p>This is the main information-flow test. If useful information exists upstream but does not change the final candidate ranking, the failure can occur in forecast aggregation, planner transmission, inventory heads, candidate heads, or the final selection rule.</p>
+<h2>6. Control-Board Blueprint</h2>
+<p>The present board already contains:</p>
+<ul>
+<li>training loss over eval steps;</li>
+<li>training pnl over eval steps;</li>
+<li>trade volume and leverage over the eval window;</li>
+<li>pnl path over the eval window;</li>
+<li>replay reconciliation rows;</li>
+<li>carry-slice and leverage-response tables;</li>
+<li>run-step timeline.</li>
+</ul>
+<p>For future MM4 work, the control board should be read as seven diagnostic panels:</p>
+<table>
+<thead>
+<tr>
+  <th>panel</th>
+  <th>monitor</th>
+  <th>failure it isolates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>data integrity</td>
+  <td>dataset dates, row counts, gap blocks, filtered signal rows, live artifact/config existence</td>
+  <td>stale or inconsistent packet</td>
+</tr>
+<tr>
+  <td>forecast transmission</td>
+  <td>aggregate edge/confidence/freshness, source flags, world-vs-directional disagreement, error magnitudes</td>
+  <td>useful upstream information not reaching MM4</td>
+</tr>
+<tr>
+  <td>planner transmission</td>
+  <td>baseline vs rerun <code>plan_*</code>, inventory target, reservation offset, urgency, budgets</td>
+  <td>MM4 inventory heads not changing execution intent coherently</td>
+</tr>
+<tr>
+  <td>inventory-control heads</td>
+  <td><code>micro_alpha_*</code>, <code>inventory_residual_frac</code>, <code>inventory_gate</code> over time and by side</td>
+  <td>planner feedback loop failure</td>
+</tr>
+<tr>
+  <td>candidate heads</td>
+  <td>fill, adverse, edge, value by candidate style and touch distance</td>
+  <td>execution ranking failure</td>
+</tr>
+<tr>
+  <td>inventory/risk state</td>
+  <td>leverage, long/short occupancy, stale-inventory clearance, side balance</td>
+  <td>constraint failure</td>
+</tr>
+<tr>
+  <td>replay economics</td>
+  <td>spread, fees, adverse selection, carry, baseline, residual, unit reconciliation</td>
+  <td>pnl accounting failure</td>
+</tr>
+</tbody>
+</table>
+<p>Three additions would make the board materially stronger:</p>
+<ul>
+<li>a forecast-to-plan transmission table: upstream edge/confidence vs resulting <code>plan_desired_inventory_notional_usd</code>;</li>
+<li>a plan-to-action transmission table: rerun planner outputs vs chosen candidate style, touch distance, and realized fill/adverse rates;</li>
+<li>a contract-integrity table: latest completed eval step, board-synced step, published artifact existence, generated live-config existence, and unit-consistency verdict.</li>
+</ul>
+<h2>7. Current State On 2026-04-18</h2>
+<p>The current MM4 packet is structurally useful but not yet decision-grade.</p>
+<ul>
+<li>The frozen dataset exists and the control board is now populated.</li>
+<li>The live contract is implemented in code, and the current publish directory now contains the active MM4 artifact and generated runtime config:<ul>
+<li><code>/home/njudge/control_board_data/Robert_MM_4/v1/live/latest_best_joint_exec.pt</code> exists;</li>
+<li><code>joint_live_runtime.generated.yaml</code> exists;</li>
+<li><code>iter_001_train_metrics.json</code> is still missing.</li>
+</ul>
+</li>
+<li>The training trail is internally inconsistent:<ul>
+<li>the control board summaries are synced to step <code>57000</code>;</li>
+<li>the progress log has a completed eval at step <code>58000</code>;</li>
+<li>the log then reaches <code>joint_train_eval_start</code> at step <code>59000</code> with no corresponding completion record.</li>
+</ul>
+</li>
+<li>Replay evidence remains weak:<ul>
+<li>board replay path ends at cumulative pnl <code>-0.008604</code>;</li>
+<li>replay is still mark-to-mid only on entry/exit pricing, with zero spread capture and zero fees under the active config;</li>
+<li>mean absolute leverage is <code>2.087646x</code>;</li>
+<li><code>78.33%</code> of replay rows are above <code>1.50x</code>;</li>
+<li>active-side occupancy is predominantly short.</li>
+</ul>
+</li>
+<li>The training progress metrics also indicate unstable inventory use:<ul>
+<li>recent completed evals show peak inventory around <code>3.59x</code> to <code>5.47x</code> of the MM4 <code>1x=150 USD</code> denominator;</li>
+<li>adverse-selection rates remain far above the configured ceiling.</li>
+</ul>
+</li>
+</ul>
+<p>The correct interpretation is:</p>
+<ul>
+<li>MM4 now has a real joint-execution scaffold;</li>
+<li>the feature and supervision contracts are concrete;</li>
+<li>the control board is beginning to isolate failure sources;</li>
+<li>the present empirical packet is incomplete and statistically weak.</li>
+</ul>
+<h2>8. Lineage</h2>
+<p>This is secondary context, not the main object of the note.</p>
+<table>
+<thead>
+<tr>
+  <th>stage</th>
+  <th>main object</th>
+  <th>carried into MM4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>Robert</code></td>
+  <td>iterative research loop</td>
+  <td>loop structure</td>
+</tr>
+<tr>
+  <td><code>Robert_MM_1</code></td>
+  <td>proxy MM inventory model</td>
+  <td>comparison window, chart language, <code>m1_ideal_state_x</code></td>
+</tr>
+<tr>
+  <td><code>Robert_MM_2</code></td>
+  <td>stricter board and issue routing</td>
+  <td>yes</td>
+</tr>
+<tr>
+  <td><code>Robert_MM_3</code></td>
+  <td>transition toward the real execution stack</td>
+  <td>yes</td>
+</tr>
+<tr>
+  <td><code>Robert_MM_4</code></td>
+  <td>joint execution model plus live handoff contract</td>
+  <td>current object</td>
+</tr>
+</tbody>
+</table>
+
+      <div class="footer">Generated from the Markdown source in <code>Robert_MM_4</code>.</div>
+    </article>
+  </main>
+</body>
+</html>
